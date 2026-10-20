@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maui M. Sapetin | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px 20px;
+            color: #4a3643;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(255,255,255,0.8) 0%, transparent 50%),
+                radial-gradient(circle at 90% 20%, rgba(255,255,255,0.6) 0%, transparent 50%),
+                linear-gradient(135deg, #fff0f5, #ffe4ec, #ffeff5);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* ✨ SMOOTH SLIDE ANIMATION */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.9s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 🌸 3D CARD STYLE */
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow:
+                0 18px 45px rgba(236, 72, 153, 0.14),
+                0 8px 20px rgba(236, 72, 153, 0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            border: 1px solid #fce7f3;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow:
+                0 22px 55px rgba(236, 72, 153, 0.18),
+                0 12px 25px rgba(236, 72, 153, 0.12);
+            transition: all 0.35s ease;
+        }
+
+        .profile-section {
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fbcfe8;
+            box-shadow:
+                0 0 0 4px rgba(255,255,255,0.8),
+                0 10px 30px rgba(236, 72, 153, 0.15);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #db2777;
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #9d7b8a;
+        }
+
+        h2 {
+            color: #ec4899;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 🎓 EDUCATION SECTION */
+        .edu-block {
+            background: #fdf2f8;
+            padding: 22px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+            border-left: 4px solid #f472b6;
+            box-shadow:
+                0 4px 15px rgba(236, 72, 153, 0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.6);
+        }
+
+        .edu-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .school-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.12);
+        }
+
+        .edu-text h3 {
+            color: #be185d;
+            font-size: 1.2em;
+        }
+
+        .edu-text p {
+            color: #7a6572;
+            margin-top: 4px;
+        }
+
+        /* 🛠️ CORE SKILLS WITH BARS */
+        .skills-block {
+            background: #fdf2f8;
+            padding: 22px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+            box-shadow:
+                0 4px 15px rgba(236, 72, 153, 0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.6);
+        }
+
+        .skills-block h3 {
+            color: #be185d;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .skill-bar {
+            margin-bottom: 15px;
+        }
+
+        .skill-bar:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-name {
+            color: #836e7c;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+        }
+
+        .skill-track {
+            width: 100%;
+            height: 10px;
+            background: #fce7f3;
+            border-radius: 999px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(236, 72, 153, 0.1);
+        }
+
+        .skill-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #f472b6, #ec4899, #db2777);
+            box-shadow:
+                0 0 12px rgba(236, 72, 153, 0.4),
+                inset 0 2px 4px rgba(255,255,255,0.3);
+            transition: width 1.4s ease-out;
+        }
+
+        /* 🛠️ TOOLS TAGS */
+        .tools-container {
+            background: #fdf2f8;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 15px;
+            box-shadow:
+                0 4px 15px rgba(236, 72, 153, 0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.6);
+        }
+
+        .tools-title {
+            color: #be185d;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tool-tag {
+            background: white;
+            color: #be185d;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            box-shadow:
+                0 4px 10px rgba(236, 72, 153, 0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.5);
+            border: 1px solid #fbcfe8;
+        }
+
+        /* 📂 PROJECTS */
+        .project-card {
+            background: #fdf2f8;
+            padding: 22px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+            border-left: 4px solid #f472b6;
+            box-shadow:
+                0 4px 15px rgba(236, 72, 153, 0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.6);
+        }
+
+        .project-card h3 {
+            color: #be185d;
+            font-size: 1.2em;
+        }
+
+        .date {
+            color: #9d7b8a;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .cert-preview img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin-top: 12px;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.08);
+        }
+
+        .contact-links p {
+            margin: 8px 0;
+        }
+
+        .contact-links a {
+            color: #db2777;
+            text-decoration: none;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: #9d7b8a;
+            font-size: 0.95em;
+        }
+
+        .flower-decoration {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 10px 0;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- 🌸 PROFILE SECTION -->
+        <div class="card profile-section animate-on-scroll">
+            <img src="IMG_8657.jpeg" alt="Maui M. Sapetin" class="profile-img">
+            <h1>Maui M. Sapetin</h1>
+            <p class="tagline">Computer Engineering Student</p>
+            <p style="margin-top:15px; color:#9d7b8a;">Open for Internship & Work Opportunities 🌸</p>
+        </div>
+
+        <!-- 🌸 ABOUT ME -->
+        <div class="flower-decoration">🌷🌸🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌸 About Me</h2>
+            <p>Welcome to my profile! I'm a 4th-year Computer Engineering student who is organized, detail-oriented, and always eager to learn and grow. I believe in continuous improvement and doing my best in everything I do.</p>
+        </div>
+
+        <!-- 🎓 EDUCATION -->
+        <div class="flower-decoration">🌷🎓🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌷 Education</h2>
+
+            <div class="edu-block">
+                <div class="edu-header">
+                    <img src="icct-logo.jpg" alt="ICCT Colleges Logo" class="school-logo">
+                    <div class="edu-text">
+                        <h3>ICCT Colleges Foundation Inc.</h3>
+                        <p><strong>Bachelor of Science in Computer Engineering</strong></p>
+                        <p>📍 Cainta Main Campus</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edu-block">
+                <div class="edu-header">
+                    <img src="engineering-logo.jpg" alt="Engineering Department Logo" class="school-logo">
+                    <div class="edu-text">
+                        <h3>Engineering Department</h3>
+                        <p><strong>Computer Engineering Program</strong></p>
+                        <p>Focus: Software, Embedded Systems, Networking</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edu-block">
+                <div class="edu-header">
+                    <img src="tacloban-agri-logo.jpg" alt="Tacloban National Agricultural School Logo" class="school-logo">
+                    <div class="edu-text">
+                        <h3>Tacloban National Agricultural School</h3>
+                        <p><strong>Senior High School — General Academic Strand</strong></p>
+                        <p>Tacloban City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🛠️ CORE SKILLS -->
+        <div class="flower-decoration">🌷🛠️🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌷 Core Skills</h2>
+
+            <div class="skills-block">
+                <h3>Skill Overview</h3>
+
+                <div class="skill-bar">
+                    <div class="skill-name">Web Development</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="75"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-name">App Development</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="65"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-name">Database</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="70"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tools-container">
+                <p class="tools-title">💻 Languages & Tools</p>
+                <div class="tag-group">
+                    <span class="tool-tag">HTML</span>
+                    <span class="tool-tag">CSS</span>
+                    <span class="tool-tag">JavaScript</span>
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Java</span>
+                    <span class="tool-tag">GitHub</span>
+                    <span class="tool-tag">Microsoft Office</span>
+                    <span class="tool-tag">Google Workspace</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📂 PROJECT SHOWCASE -->
+        <div class="flower-decoration">🌷📂🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌷 Project Showcase</h2>
+
+            <div class="project-card">
+                <h3>EventSync — Event Management System</h3>
+                <p class="date">Ongoing Project</p>
+                <p>A web-based event management system designed to simplify event scheduling, organization, and coordination for departments and student organizations. Features include event creation, scheduling, notifications, and record tracking — built to make event planning faster and more organized for the college community.</p>
+            </div>
+        </div>
+
+        <!-- 💼 WORK EXPERIENCE -->
+        <div class="flower-decoration">🌷💼🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌸 Work Experience</h2>
+
+            <div class="project-card">
+                <h3>Department Operations Assistant</h3>
+                <p class="date">Current</p>
+                <p>Managing daily department paperwork — processing new orders, creating invoices, tracking unpaid payments, and following up on due dates. Making sure all records are accurate and settled on time.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Invoice & Product Encoder</h3>
+                <p class="date">Previous Role</p>
+                <p>Responsible for encoding and organizing invoices, receipts, and product data. Ensured all information was correctly documented and updated.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Secretary</h3>
+                <p class="date">2021 – 2022</p>
+                <p>Handled administrative tasks, managed schedules, organized records, and assisted with office documentation and communication.</p>
+            </div>
+        </div>
+
+        <!-- 📜 CERTIFICATES -->
+        <div class="flower-decoration">🌷📜🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌸 Certificates & Recognition</h2>
+
+            <div class="project-card">
+                <h3>Best Office Staff of the Year</h3>
+                <p class="date">2021 – 2022</p>
+                <p>Awarded for outstanding dedication, efficiency, and exemplary performance in office administration and service.<br>
+                <em>Supervised by: Ms. Lydia Tingkingco</em></p>
+                <div class="cert-preview">
+                    <img src="IMG_8717.jpeg" alt="Best Office Staff Certificate">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>E-Day Seminar — Certificate of Participation</h3>
+                <p class="date">March 3, 2026</p>
+                <p>"Advancing Secure Networking for Smart Environment: Design, Threat Modeling, and Mitigation Strategies"<br>
+                ICCT Colleges Foundation Inc.</p>
+                <div class="cert-preview">
+                    <img src="IMG_6505.jpeg" alt="E-Day Certificate">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>E-Day Seminar — Certificate of Participation</h3>
+                <p class="date">March 3, 2026</p>
+                <p>"Bioinformatics and Digital Science Information in the Philippine Context"<br>
+                ICCT Colleges Foundation Inc.</p>
+                <div class="cert-preview">
+                    <img src="IMG_6510.jpeg" alt="E-Day Certificate">
+                </div>
+            </div>
+        </div>
+
+        <!-- ✉️ CONTACT -->
+        <div class="flower-decoration">🌷✉️🌷</div>
+        <div class="card animate-on-scroll">
+            <h2>🌷 Reach Me Here</h2>
+            <div class="contact-links">
+                <p><strong>Email:</strong> <a href="mailto:Mauisapetin80@gmail.com">Mauisapetin80@gmail.com</a></p>
+                <p><strong>Facebook:</strong> Maui Sapetin</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/Mauisapetin">@Mauisapetin</a></p>
+            </div>
+        </div>
+
+        <!-- 🌸 FOOTER -->
+        <div class="footer animate-on-scroll">
+            <p class="flower-decoration">🌸🌷🌼🌷🌸</p>
+            <p>Thank you for visiting my profile!</p>
+            <p>Maui M. Sapetin © 2026 🌷</p>
+        </div>
+    </div>
+
+    <!-- ✨ ANIMATION SCRIPT -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Animate skill bars when visible
+                    if (entry.target.querySelector('.skill-fill')) {
+                        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            bar.style.width = width + '%';
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
